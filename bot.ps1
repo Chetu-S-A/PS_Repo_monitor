@@ -1,7 +1,7 @@
 
 function mainFunc {
 	$PreviousCommitNumber = Get-Content .\COMMIT
-	$MostRecentCommitHead = git ls-remote "<Replace this with the repository to be monitored" HEAD
+	$MostRecentCommitHead = git ls-remote "https://github.com/kavyasribasavaraj/DevOps" HEAD
 	$MostRecentCommitNumber = $MostRecentCommitHead.split("		")[0]
 	
 	if($PreviousCommitNumber -eq $MostRecentCommitNumber){
@@ -9,7 +9,7 @@ function mainFunc {
 		Start-sleep -s 10
 		mainFunc
 	}else{
-		#Your deployment script comes here
+		.\Batch.bat
 		echo "Deploy"
 		Clear-Content COMMIT
 		$MostRecentCommitNumber >> 'COMMIT'
